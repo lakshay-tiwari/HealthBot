@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { chatHistoryState } from '../store/chatState';
 import { getChatResponse } from '../api/chatApi';

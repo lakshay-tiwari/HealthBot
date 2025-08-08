@@ -15,22 +15,17 @@
 //     answer: responses[question.toLowerCase()] || responses.default
 //   };
 // };
-
-
+import axios from 'axios';
+const BACKEND_URI = import.meta.env.VITE_BACKEND_URI;
 
 export const getChatResponse = async (question) => {
+  const reqBody = {
+    question
+  }
   try {
-    const response = await fetch('http://localhost:3000/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ question })
-    });
-    const data = await response.json();
-    return data; // Should return { answer: "response string" }
+    const res = await axios.post(`${BACKEND_URI}`,reqBody)
+    return res.data; 
   } catch (error) {
-    console.error('API Error:', error);
-    throw error;
+    return { answer: "Something wrong occurs"};
   }
 };
